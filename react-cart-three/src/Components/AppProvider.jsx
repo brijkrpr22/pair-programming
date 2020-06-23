@@ -31,7 +31,8 @@ class AppProvider extends React.Component {
         const method = {
             getData:this.getData,
             addToCart:this.addToCart,
-            getCart:this.getCart
+            getCart:this.getCart,
+            myOrders:this.myOrders,
         }
         return (
             < AppContext.Provider value={method} >

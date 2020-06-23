@@ -16,7 +16,7 @@ class Home extends React.Component {
             })
         }
     render() {
-        const { getData,addToCart,getCart } = this.context;
+        const { getData,addToCart,getCart,myOrders } = this.context;
         let myData = getData();
         console.log(getCart())
         return (
