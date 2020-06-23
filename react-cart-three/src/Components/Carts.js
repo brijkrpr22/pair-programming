@@ -2,11 +2,11 @@ import React from "react"
 import { AppContext } from "./AppProvider";
 
 
-class Home extends React.Component {
+class Carts extends React.Component {
     constructor(props){
         super(props)
         this.state={
-            category:''
+
         }
     }
 
@@ -16,21 +16,10 @@ class Home extends React.Component {
             })
         }
     render() {
-        const { getData,addToCart,getCart } = this.context;
-        let myData = getData();
-        console.log(getCart())
+        const {getCart} =this.context
+        let myData=getCart()
         return (
             <div className="container mt-5">
-                <select className="dropdown mb-2" onChange={this.handleChange}>
-                    <option value='all'>ALL</option>
-                    {
-                        myData.map((ele,item)=>{
-                            return(
-                                <option key={item} value={ele.category}>{ele.category}</option>
-                            )
-                        })
-                    }
-                </select>
                 <table className="table table-striped table-dark">
                     <thead>
                     <tr>
@@ -43,14 +32,7 @@ class Home extends React.Component {
                     </thead>
                     <tbody>
                         {
-                            myData && myData.filter(ele=>{
-                                if(this.state.category=="all" || this.state.category==""){
-                                    return true
-                                }
-                                if(ele.category==this.state.category){
-                                    return true
-                                }
-                            }).map((ele,index)=>{
+                            myData && myData.map((ele,index)=>{
                                 return(
                                     <tr key={index}>
                                         <th scope="row">{ele.id}</th>
@@ -58,7 +40,6 @@ class Home extends React.Component {
                                         <td><img src={ele.image} width='100' height='100' alt={ele.item}/></td>
                                         <td>{ele.price}</td>
                                         <td>{ele.category}</td>
-                                        <td><button onClick={()=>addToCart(ele.id)} className="btn btn-outline-warning">Add to cart</button></td>
                                     </tr>
                                 )
                             })
@@ -70,5 +51,5 @@ class Home extends React.Component {
     }
 }
 
-Home.contextType = AppContext
-export default Home 
+Carts.contextType = AppContext
+export default Carts 

@@ -7,16 +7,31 @@ class AppProvider extends React.Component {
         super(props)
 
         this.state = {
-            data: data
+            data: data,
+            cartArr:[]
         }
     }
 
     getData = () => {
         return this.state.data
     }
+
+    getCart = () => {
+        return this.state.cartArr
+    }
+
+    addToCart=(payload)=>{
+        let item =this.state.data.find(ele=>ele.id==payload)
+        this.setState({
+            cartArr:[...this.state.cartArr, item]
+        })
+    }
+
     render() {
         const method = {
             getData:this.getData,
+            addToCart:this.addToCart,
+            getCart:this.getCart
         }
         return (
             < AppContext.Provider value={method} >
